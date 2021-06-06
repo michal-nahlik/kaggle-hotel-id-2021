@@ -5,7 +5,6 @@ Detailed description: https://www.kaggle.com/c/hotel-id-2021-fgvc8/discussion/24
 
 
 ## Data
-The training set contains 97000+ images from 7770 hotels. The test set contains around 13000 images.<br>
 For training I used only competition data rescaled and padded to 512x512 pixels but including external data (like [Hotels-50K dataset](https://github.com/GWUvision/Hotels-50K)) can improve the score significantly.
 
 EDA: [src/hotel-id-eda-with-plotly.ipynb](src/hotel-id-eda-with-plotly.ipynb) ([nbviewer](https://nbviewer.jupyter.org/github/michal-nahlik/kaggle-hotel-id-2021/blob/master/src/hotel-id-eda-with-plotly.ipynb))
