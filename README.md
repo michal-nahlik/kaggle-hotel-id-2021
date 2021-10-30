@@ -3,9 +3,10 @@ Code used for [Hotel-ID to Combat Human Trafficking 2021 - FGVC8](https://www.ka
 
 Detailed description: https://www.kaggle.com/c/hotel-id-2021-fgvc8/discussion/242207
 
+![alt text](doc/img/data_preview_small.png)
 
 ## Data
-For training I used only competition data rescaled and padded to 512x512 pixels but including external data (like [Hotels-50K dataset](https://github.com/GWUvision/Hotels-50K)) can improve the score significantly.
+For training I used only competition data rescaled and padded to 512x512 pixels but including external data (like [Hotels-50K dataset](https://github.com/GWUvision/Hotels-50K)) can improve the score significantly. Following autmentations were used during training: HorizontalFlip, VerticalFlip, ShiftScaleRotate, OpticalDistortion, IAAPerspective, CoarseDropout, RandomBrightness.
 
 EDA: [src/hotel-id-eda-with-plotly.ipynb](src/hotel-id-eda-with-plotly.ipynb) ([nbviewer](https://nbviewer.jupyter.org/github/michal-nahlik/kaggle-hotel-id-2021/blob/master/src/hotel-id-eda-with-plotly.ipynb))
 
@@ -23,7 +24,7 @@ Classification model: [src/training/hotel-id-classification-training.ipynb](src/
 
 Parameters: Lookahead (k=3) + AdamW optimizer, OneCycleLR scheduler, CrossEntropyLoss/CosFace loss
 
-These models were then used to generate embeddings for the images which were then used to calculated cosine similarity of the test images to the train dataset. Product of similarities was used to ensemble output from different models and to find the top 5 most similar images from different hotels.
+These models were used to generate embeddings for each image which were then used to calculated cosine similarity of the test images to the train dataset. Product of similarities was used to ensemble output from different models and to find the top 5 most similar images from different hotels.
 
 Trained models: https://www.kaggle.com/michaln/hotelid-trained-models<br>
 Inference notebook: [src/hotel-id-inference.ipynb](src/hotel-id-inference.ipynb)
@@ -46,3 +47,5 @@ Evaluation metric: [Mean Average Precision @5](https://www.kaggle.com/c/hotel-id
 1) Prepare data: download the [preprocessed dataset](https://www.kaggle.com/michaln/hotelid-images-512x512-padded) or run [hotel-id-preprocess-images](src/hotel-id-preprocess-images.ipynb) notebook to generate images
 2) Train models: run [hotel-id-arcmargin-training](src/training/hotel-id-arcmargin-training.ipynb), [hotel-id-cosface-training](src/training/hotel-id-cosface-training.ipynb), [hotel-id-classification-training](src/training/hotel-id-classification-training.ipynb) notebooks, or use [trained models](https://www.kaggle.com/michaln/hotelid-trained-models)
 3) Inference: Edit models and paths in [inference](src/hotel-id-inference.ipynb) notebook and run it on Kaggle
+
+## 
